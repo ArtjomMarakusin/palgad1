@@ -11,7 +11,7 @@ def sisesta_andmed(i,p): ## Добавить человека и зарплат�
         p.append(palk) ## добавляет зарплату в список
     return i,p
 
-def andmed_ekranile(i,p):
+def andmed_ekranile(i,p): ## выводит людей и их зарплату на экран в конце определенных функций
     N=len(i)
     for n in range(N):
         print(f"{i[n]} - {p[n]}")
@@ -30,7 +30,7 @@ def kustutamine(i,p): ## Удалить человека и зарплату
         j=int(input("Порядковый номер человека: "))
         i.pop(abi_list[j-1])
         p.pop(abi_list[j-1])
-        andmed_ekranile(i,p)
+        andmed_ekranile(i,p) #выводит на экран списки inimesed и palk
     return i,p
 
 def sorteerimine(i,p,v): ## Сортировка зарплат по возрастанию/убыванию
@@ -123,13 +123,13 @@ def keskmine(palk,n): ## Средняя зарплата
 def erinev_palk(i, p): ## У кого зарплата больше/меньше заданной?
     number = int(input('Введите зарплату: '))
     tin = int(input('Больше или меньше зарплаты(1 - > / 2 - <?'))
-    for i in palk:
-        if tin == 1:
+    for i in palk: 
+        if tin == 1: ## вывод людей с зарплатой больше "number"
             if i > number:
                 ind = palk.index(i)
                 nimi = inimesed[ind]
                 print(f'{nimi} - {i}')
-        else:
+        else: ## вывод людей с зарплатой меньше "number"
             if i < number:
                 ind = palk.index(i)
                 nimi = inimesed[ind]
@@ -182,7 +182,7 @@ def tulumaks(i, p): ## Зарплата после подоходного нал
 
 def Kustutamine(palk,inimesed,n): ## Удаление данных тех, чья зарплата ниже средней
     uus_palk = []; uus_inimesed = []
-    kesk = keskmine(palk,n)
+    kesk = keskmine(palk,n) ## за основу берется уже написанная функция keskmine
     for p in palk:
         if p > kesk:
             nr = palk.index(p)
