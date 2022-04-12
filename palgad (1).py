@@ -2,13 +2,13 @@ from random import *
 inimesed = ['A', 'B', 'C', 'D','E']
 palk = [1200,2500,750,395,1200]
 n=len(inimesed)
-def sisesta_andmed(i,p):
-    N = int(input('Введите количество людей: '))
+def sisesta_andmed(i,p): ## Добавить человека и зарплату
+    N = int(input('Введите количество людей: ')) ## Сколько человек хотим добавить
     for n in range(N):
-        inimene = input("Введите имя: ")
-        i.append(inimene)
-        palk = randint(100,10000)
-        p.append(palk)
+        inimene = input("Введите имя: ") ## Вводим имя человека
+        i.append(inimene) ## добавляет человека в список
+        palk = randint(100,10000) ## Генерирует рандомную зарплату каждому человеку
+        p.append(palk) ## добавляет зарплату в список
     return i,p
 
 def andmed_ekranile(i,p):
@@ -16,9 +16,9 @@ def andmed_ekranile(i,p):
     for n in range(N):
         print(f"{i[n]} - {p[n]}")
 
-def kustutamine(i,p):
+def kustutamine(i,p): ## Удалить человека и зарплату
     nimi=input("Введите имя человека, которого нужно удалить: ")
-    n=i.count(nimi)
+    n=i.count(nimi) ## подсчитывает количество людей с введеным именем
     abi_list=[]
     if n > 0:
         t=0
@@ -33,7 +33,7 @@ def kustutamine(i,p):
         andmed_ekranile(i,p)
     return i,p
 
-def sorteerimine(i,p,v):
+def sorteerimine(i,p,v): ## Сортировка зарплат по возрастанию/убыванию
     N = len(p)
     if v == 1:
         for n in range (0, N):
@@ -58,7 +58,7 @@ def sorteerimine(i,p,v):
 
     andmed_ekranile(i ,p)
 
-def Sort_nimi_jargi(palk,inimesed,n):
+def Sort_nimi_jargi(palk,inimesed,n): ## Сортировка по имени
     abi_p = 0
     abi_i = ""
     for i in range(0,n-1):
@@ -71,14 +71,14 @@ def Sort_nimi_jargi(palk,inimesed,n):
                 palk[i]=palk[j]
                 palk[j]=abi_p
 
-def vordsed_palgad(palk, inimesed,n):
+def vordsed_palgad(palk, inimesed,n): ## Кто получает одинаковые зарплаты?
     odin_p =[palk[i] for i in range(n) if palk.count(palk[i])>1]   
     odin_p_i =[inimesed[i] for i in range(n) if palk.count(palk[i])>1] 
     odin_p_s, odin_p_i_s = sorteerimine(odin_p,odin_p_i,len(odin_p))   
     for i in range(len(odin_p_s)):
         print(odin_p_i_s[i],'получает',str(odin_p_s[i])+'€',) 
 
-def maximum(palk,inimesed):
+def maximum(palk,inimesed): ## Максимальная зарплата и кто её получает
     max_palk=palk[0]       
     kellel=inimesed[0]      
     for p in palk:          
@@ -88,7 +88,7 @@ def maximum(palk,inimesed):
             kellel=inimesed[nr]      
     return max_palk, kellel,nr+1  
 
-def minimum(palk,inimesed):
+def minimum(palk,inimesed): ## Минимальная зарплата и кто её получает
     min_palk=palk[0]
     kellel=inimesed[0]
     for p in palk:
@@ -98,7 +98,7 @@ def minimum(palk,inimesed):
             kellel=inimesed[nr]
     return min_palk, kellel,nr+1 
 
-def nimi(i, p):
+def nimi(i, p): ## Поиск зарплаты по имени человека
     otsi_nimi = []
     otsi_palk = []
     palk_keda = 0
@@ -113,14 +113,14 @@ def nimi(i, p):
     for i in range(len(otsi_nimi)):
         print(f'{otsi_nimi[i]} - {otsi_palk[i]}')
 
-def keskmine(palk,n):
+def keskmine(palk,n): ## Средняя зарплата
     summa=0
     for p in palk:
         summa+=p
     kesk=round(summa/n,2)
     print(f"Средняя зарплата {kesk}")
 
-def erinev_palk(i, p):
+def erinev_palk(i, p): ## У кого зарплата больше/меньше заданной?
     number = int(input('Введите зарплату: '))
     tin = int(input('Больше или меньше зарплаты(1 - > / 2 - <?'))
     for i in palk:
@@ -135,7 +135,7 @@ def erinev_palk(i, p):
                 nimi = inimesed[ind]
                 print(f'{nimi} - {i}')
 
-def top(i, p):
+def top(i, p): ## Top3 (3 самых богатых и 3 самых бедных)
     N = len(p)
     v = int(input('Богатые(1)/бедные(2): '))
     if v == 1:
@@ -167,7 +167,7 @@ def top(i, p):
         for i in range(0, k, 1):
             print(f'{inimesed[i]} - {palk[i]}')
 
-def tulumaks(i, p):
+def tulumaks(i, p): ## Зарплата после подоходного налога
     z = int(input('Введите зарплату: '))
     k = 0
     if z < 1200:
@@ -180,7 +180,7 @@ def tulumaks(i, p):
         k = z*0.2
     print(f'Нетто зарплата - {round(k,2)}')
 
-def Kustutamine(palk,inimesed,n):
+def Kustutamine(palk,inimesed,n): ## Удаление данных тех, чья зарплата ниже средней
     uus_palk = []; uus_inimesed = []
     kesk = keskmine(palk,n)
     for p in palk:
@@ -210,7 +210,7 @@ while 1:
     print("Зарплата после подоходного налога - tulumaks")
     print("Сортировка по имени - sort_n")
 
-    valik=input("Ваш выбор? ")
+    valik=input("Ваш выбор? ") ## Считывает выбор человека
 
     if valik.lower() == "add":
         inimesed,palgad=sisesta_andmed(inimesed,palk)
